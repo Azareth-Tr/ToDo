@@ -1,9 +1,12 @@
+/* global $ */
+
 import Alert from './alert.js';
 
 export default class Modal {
   constructor() {
     this.title = document.getElementById('modal-title');
     this.description = document.getElementById('modal-description');
+    this.category = document.getElementById('modal-category');
     this.btn = document.getElementById('modal-btn');
     this.completed = document.getElementById('modal-completed');
     this.alert = new Alert('modal-alert');
@@ -15,6 +18,7 @@ export default class Modal {
     this.todo = todo;
     this.title.value = todo.title;
     this.description.value = todo.description;
+    this.category.value = todo.category || 'General';
     this.completed.checked = todo.completed;
   }
 
@@ -30,8 +34,9 @@ export default class Modal {
       callback(this.todo.id, {
         title: this.title.value,
         description: this.description.value,
+        category: this.category.value,
         completed: this.completed.checked,
       });
-    }
+    };
   }
 }
